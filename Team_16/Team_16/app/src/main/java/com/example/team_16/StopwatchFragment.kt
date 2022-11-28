@@ -23,7 +23,7 @@ import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Suppress("DEPRECATION")
-class Stopwatch : Fragment() {
+class StopwatchFragment : Fragment() {
 
     var MillisecondTime: Long = 0
     var StartTime: Long = 0
