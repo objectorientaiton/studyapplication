@@ -11,6 +11,7 @@ import com.example.team_16.Repository.StopwatchRepository
 import com.example.team_16.databinding.FragmentStopwatchBinding
 import com.example.team_16.ViewModel.StopwatchViewModel
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -19,30 +20,18 @@ import kotlin.collections.HashMap
 @Suppress("DEPRECATION")
 class StopwatchFragment : Fragment() {
 
+    private val viewModel: StopwatchViewModel by activityViewModels()
     private val stopwatch = StopwatchRepository()
-    private var binding: FragmentStopwatchBinding? = null
     private lateinit var data: HashMap<String, *>
-    var major: String? = null
-    val viewModel: StopwatchViewModel by activityViewModels()
-    //var flag = midnight()
 
-
-    private val yesterday = SimpleDateFormat("yyyy-MM-dd")
-        .format(Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24))
-    private val today = SimpleDateFormat("yyyy-MM-dd")
-        .format(Date(System.currentTimeMillis())) //오늘 날짜
-    val tomorrow = SimpleDateFormat("yyyy-MM-dd")
-        .format(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+    private var binding: FragmentStopwatchBinding? = null
+    private var date = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStopwatchBinding.inflate(inflater)
-
-        stopwatch.userRef.get().addOnSuccessListener { document ->
-            major = document["department"] as String?
-        }
 
         return binding?.root
     }
@@ -63,24 +52,44 @@ class StopwatchFragment : Fragment() {
             binding?.txtMil?.setText(String.format("%02d", it))
         }
 
+        viewModel.yesh.observe(viewLifecycleOwner){
+            binding?.txtYesHour?.setText(String.format("%02d", it))
+        }
+        viewModel.yesm.observe(viewLifecycleOwner){
+            binding?.txtYesMin?.setText(String.format("%02d", it))
+        }
+        viewModel.yess.observe(viewLifecycleOwner){
+            binding?.txtYesSec?.setText(String.format("%02d", it))
+        }
+        viewModel.yesms.observe(viewLifecycleOwner){
+            binding?.txtYesMil?.setText(String.format("%02d", it))
+        }
+
+        viewModel.date.observe(viewLifecycleOwner){
+            date = viewModel.date.value
+        }
+
+
         binding?.btnStart?.setOnClickListener {
             viewModel.timerStart()
         }
         binding?.btnStop?.setOnClickListener {
             viewModel.timerStop()
+
             data = stopwatch.makeHash(viewModel.hour.value?.toLong(), viewModel.min.value?.toLong(),
-                viewModel.sec.value?.toLong(), viewModel.mil.value?.toLong(), viewModel.timebuff.value?.toLong(), major)
-            //if(flag == 1) stopwatch.setData(tomorrow, data)
-            stopwatch.setData(today, data)
+                viewModel.sec.value?.toLong(), viewModel.mil.value?.toLong(), viewModel.timebuff.value?.toLong(),
+                viewModel.major.value)
+            stopwatch.setData(date, data)
         }
     }
 
     override fun onStop() {
         super.onStop()
+        viewModel.timerStop()
         data = stopwatch.makeHash(viewModel.hour.value?.toLong(), viewModel.min.value?.toLong(),
-            viewModel.sec.value?.toLong(), viewModel.mil.value?.toLong(), viewModel.timebuff.value?.toLong(), major)
-        //if(flag == 1) stopwatch.setData(tomorrow, data)
-        stopwatch.setData(today, data)
+            viewModel.sec.value?.toLong(), viewModel.mil.value?.toLong(), viewModel.timebuff.value?.toLong(),
+            viewModel.major.value)
+        stopwatch.setData(date, data)
     }
 
     override fun onDestroyView() {
@@ -88,5 +97,3 @@ class StopwatchFragment : Fragment() {
         binding = null
     }
 }
-
-

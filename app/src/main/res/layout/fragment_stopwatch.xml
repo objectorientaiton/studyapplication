@@ -174,35 +174,136 @@
         android:id="@+id/txt_yesterday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop = "20dp"
         android:freezesText="false"
         android:text="yesterday"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#70002870"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.050" />
+        app:layout_constraintVertical_bias="0.457" />
 
     <TextView
-        android:id="@+id/txt_yes_data"
+        android:id="@+id/txt_yes_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="280dp"
         android:freezesText="false"
-        android:text="00:00:00.00"
+        android:text="00"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#70002870"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.950"
+        app:layout_constraintEnd_toStartOf="@id/text1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.088" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:text=":"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/txt_yes_hour"
+        app:layout_constraintEnd_toStartOf="@id/txt_yes_min"
+        app:layout_constraintStart_toEndOf="@id/txt_yes_hour"
+        app:layout_constraintTop_toTopOf="@id/txt_yes_hour"
+        />
+
+    <TextView
+        android:id="@+id/txt_yes_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:text="00"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/text1"
+        app:layout_constraintEnd_toStartOf="@id/text2"
+        app:layout_constraintStart_toEndOf="@id/text1"
+        app:layout_constraintTop_toTopOf="@id/text1"
+        />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:text=":"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/txt_yes_min"
+        app:layout_constraintEnd_toStartOf="@id/txt_yes_sec"
+        app:layout_constraintStart_toEndOf="@id/txt_yes_min"
+        app:layout_constraintTop_toTopOf="@id/txt_yes_min"
+        />
+
+    <TextView
+        android:id="@+id/txt_yes_sec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:text="00"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf= "@id/text2"
+        app:layout_constraintEnd_toStartOf= "@id/text3"
+        app:layout_constraintStart_toEndOf="@id/text2"
+        app:layout_constraintTop_toTopOf="@id/text2"
+        />
+
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:freezesText="false"
+        android:text="."
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/txt_yes_sec"
+        app:layout_constraintEnd_toStartOf="@id/txt_yes_mil"
+        app:layout_constraintStart_toEndOf="@id/txt_yes_sec"
+        app:layout_constraintTop_toTopOf="@id/txt_yes_sec"
+        />
+
+    <TextView
+        android:id="@+id/txt_yes_mil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:freezesText="false"
+        android:text="00"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#70002870"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/text3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/text3"
+        app:layout_constraintTop_toTopOf="@id/text3"
+        app:layout_constraintVertical_bias="0.127" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
